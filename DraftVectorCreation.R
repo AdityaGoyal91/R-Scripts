@@ -7,18 +7,18 @@
 
 draftVector <- function(data) {
     vectorOP <- c()
-    data <- data[order(data[ , "Rank"], decreasing = FALSE)]
+    data <- data[order(data[ , "rank"], decreasing = FALSE)]
     
-    while(sum(data[ , "Leads"]) > 0) {
+    while(sum(data[ , "count"]) > 0) {
         repVec <- as.vector(
             rep(
-                data[ , "User ID"],
-                length.out = min(data[ , "Leads"])*nrow(data)
+                data[ , "user id"],
+                length.out = min(data[ , "count"])*nrow(data)
             )
         )
         
         vectorOP <- c(vectorOP, repVec)
-        data[ , "Leads"] <- data[ , "Leads"] - min(data[ , "Leads"])
+        data[ , "count"] <- data[ , "count"] - min(data[ , "count"])
     }
     vectorOP
 }
