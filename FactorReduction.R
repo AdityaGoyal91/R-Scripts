@@ -21,6 +21,7 @@ Factor.List <- match(names(Class.List, names(DataSettoTrim)))
 
 for(i in 1:length(Factor.List)) {
     if(length(DataSettoTrim[ ,Factor.List[i]][DataSettoTrim[ ,Factor.List[i]] == ""]) > 0) {
+        levels(DataSettoTrim[ ,Factor.List[i]]) <- c(levels(DataSettoTrim[ ,Factor.List[i]]), "_Unknown_")
         DataSettoTrim[ ,Factor.List[i]][DataSettoTrim[ ,Factor.List[i]] == ""] <- "_Unknown_"
     }    
 }
